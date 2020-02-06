@@ -1,16 +1,15 @@
 from flask import request, Flask
+from utils import plus
 app = Flask(__name__)
 
+
 @app.route('/', methods=['GET', 'POST'])
-
-
-def plus():
+def get_input():
     if request.method == 'POST':  #this block is only entered when the form is submitted
         num1 = request.form.get('num1')
         num2 = request.form.get('num2')
-        plus = float(num1) + float(num2)
-        return '''<h1>The sum is: {}</h1>'''.format(plus)
-
+        sum1 = plus(num1, num2)
+        return '''<h1>The sum is: {}</h1>'''.format(sum1)
 
     return '''<form method="POST">
                   num1: <input type="text" name="num1"><br>
